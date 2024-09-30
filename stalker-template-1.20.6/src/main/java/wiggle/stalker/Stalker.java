@@ -2,15 +2,18 @@ package wiggle.stalker;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.minecraft.block.WearableCarvedPumpkinBlock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import wiggle.stalker.entity.ModEntities;
+import wiggle.stalker.entity.client.StalkerRenderer;
+import wiggle.stalker.entity.custom.StalkerEntity;
+import wiggle.stalker.item.ModItems;
 
 public class Stalker implements ModInitializer {
 	public static final String MOD_ID = "stalker";
-
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	@Override
@@ -20,5 +23,11 @@ public class Stalker implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
+
+		ModEntities.registerModEntities();
+		ModItems.registerModItems();
+
+		EntityRendererRegistry.register(ModEntities.STALKER, StalkerRenderer::new);
+		FabricDefaultAttributeRegistry.register(ModEntities.STALKER, StalkerEntity.createStalkerAttributes());
 	}
 }

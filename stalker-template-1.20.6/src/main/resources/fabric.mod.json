@@ -18,6 +18,9 @@
 		"main": [
 			"wiggle.stalker.Stalker"
 		],
+		"client": [
+			"wiggle.stalker.StalkerClient"
+		],
 		"fabric-datagen": [
 			"wiggle.stalker.StalkerDataGenerator"
 		]
